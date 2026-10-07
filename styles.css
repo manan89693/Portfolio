@@ -235,6 +235,60 @@ textarea {
   align-items: center;
 }
 
+.hero-inner .hero-roles {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-inner .hero-roles-left {
+  left: 2.2rem;
+  align-items: flex-start;
+}
+
+.hero-inner .hero-roles-right {
+  right: 2.2rem;
+  align-items: flex-end;
+}
+
+.hero-roles-left li:nth-child(2) {
+  margin-left: 1.6rem;
+}
+
+.hero-roles-right li:nth-child(2) {
+  margin-right: 1.6rem;
+}
+
+.hero-roles li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-roles li::before {
+  content: "";
+  width: 0.7rem;
+  height: 1px;
+  background: var(--coral);
+  flex: none;
+}
+
+.hero-roles-right li {
+  flex-direction: row-reverse;
+}
+
 h1,
 h2,
 h3 {
@@ -652,6 +706,29 @@ h3 {
 
   .hero-inner {
     --glow: 5.95rem;
+  }
+
+  .hero-inner .hero-roles {
+    position: static;
+    transform: none;
+    order: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.1rem;
+  }
+
+  .hero-inner .hero-roles-right {
+    margin-top: -0.8rem;
+  }
+
+  .hero-roles-left li:nth-child(2),
+  .hero-roles-right li:nth-child(2) {
+    margin: 0;
+  }
+
+  .hero-roles-right li {
+    flex-direction: row;
   }
 
   .portrait {

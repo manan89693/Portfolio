@@ -14,7 +14,18 @@ toggle?.addEventListener("click", () => {
   setMenu(toggle.getAttribute("aria-expanded") !== "true");
 });
 
-links.forEach((link) => link.addEventListener("click", () => setMenu(false)));
+const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const id = link.getAttribute("href");
+    const target = id && document.querySelector(id);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: motionOk ? "smooth" : "auto", block: "start" });
+    if (panel?.contains(link)) setMenu(false);
+  });
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") setMenu(false);
@@ -28,7 +39,6 @@ onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
-const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (motionOk && "IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(
